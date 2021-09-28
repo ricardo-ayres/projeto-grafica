@@ -1,0 +1,9 @@
+{% if produtos %}
+	<ul>
+	{% for produto in produtos %}
+		<li>{{produto}}</li>
+	{% endfor %}
+	</ul>
+{% else %}
+	<p>Não há produtos cadastrados</p>
+{% endif %}
