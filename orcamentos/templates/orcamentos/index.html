@@ -1,9 +1,15 @@
 {% if produtos %}
+	<form action="{% url 'orcamentos:orcamento' %}" method="post">
+	{% csrf_token %}
 	<ul>
 	{% for produto in produtos %}
-		<li>{{produto}}</li>
+		<li>
+		<label>{{ produto }}</label>
+		<input type="number" value="0" min="0" step="1" name="{{produto.id}}">
+		</li>
 	{% endfor %}
-	</ul>
+	<input type="submit" value="Orçar">
+	</form>
 {% else %}
 	<p>Não há produtos cadastrados</p>
 {% endif %}
