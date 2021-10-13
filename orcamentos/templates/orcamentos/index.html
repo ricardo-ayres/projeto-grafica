@@ -5,7 +5,11 @@
 	{% for produto in produtos %}
 		<li>
 		<label>{{ produto }}</label>
+		{% if produto.tipo_unidade == 'unidades' %}
 		<input type="number" value="0" min="0" step="1" name="{{produto.id}}">
+		{% else %}
+		<input type="number" value="0" min="0" step="0.1" name="{{produto.id}}">
+		{% endif %}
 		</li>
 	{% endfor %}
 	<input type="submit" value="Orçar">

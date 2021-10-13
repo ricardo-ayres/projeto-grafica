@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from .models import Produto
 
+from decimal import Decimal
+
 # Create your views here.
 from django.http import HttpResponse
 
@@ -19,11 +21,12 @@ def orcamento(request):
             # skip iteration if not a product id
             continue
 
-        quantidade = int(request.POST[pid])
+        quantidade = Decimal(request.POST[pid])
+        if quantidade == Decimal(0): continue
+
         subtotal = produto.preco * quantidade
         item = {
-            'produto': produto.nome,
-            'preco': produto.preco,
+            'produto': produto,
             'quantidade': quantidade,
             'subtotal': subtotal
         }

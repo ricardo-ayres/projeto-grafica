@@ -1,6 +1,6 @@
 <ul>
 {% for item in pedido %}
-	<li>{{ item.produto }} (R$ {{ item.preco }}) (x {{ item.quantidade }}) = {{ item.subtotal }} </li>
+	<li>{{ item.produto }} (x {{ item.quantidade }}) = {{ item.subtotal }} </li>
 {% endfor %}
 </ul>
 <p>TOTAL: {{ total }}</p>
