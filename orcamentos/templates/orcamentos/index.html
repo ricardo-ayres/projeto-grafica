@@ -1,19 +1,214 @@
-{% if produtos %}
-	<form action="{% url 'orcamentos:orcamento' %}" method="post">
-	{% csrf_token %}
-	<ul>
-	{% for produto in produtos %}
-		<li>
-		<label>{{ produto }}</label>
-		{% if produto.tipo_unidade == 'unidades' %}
-		<input type="number" value="0" min="0" step="1" name="{{produto.id}}">
-		{% else %}
-		<input type="number" value="0" min="0" step="0.1" name="{{produto.id}}">
-		{% endif %}
-		</li>
-	{% endfor %}
-	<input type="submit" value="Orçar">
-	</form>
-{% else %}
-	<p>Não há produtos cadastrados</p>
-{% endif %}
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-System</title><link rel="shortcut icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link href = "https://fonts.googleapis.com/css2? family = Open + Sans: wght @ 300; 600; 700; 800 & display = swap" rel = "stylesheet">
+    <script src="https://kit.fontawesome.com/4286b51a7b.js" crossorigin="anonymous"></script>   
+</head>
+<body>
+    <!-- <i class="fab fa-accusoft"></i>-->
+    <div class="conteiner">
+        <header>
+            <nav>
+                <div class="nav-container">
+                    <img id="logo" src="{% static 'img/logo8.png' %}"  alt="Projeto Integrador">
+                     <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Contato</a></li>
+                        <a href="catalogo" target="_blank" rel="external">Orçamento</a>
+                    </ul>
+                </div>
+            </nav>
+            <div id="main-banner">
+                <div id="serch-form">
+                    <h1></h1>
+                    <p></p>
+                    <form>
+                        
+                    </form>
+                </div>
+            </div>
+        </header>
+                    <a href="#" class="clickarea">
+                        <div class="company-box">
+                            <img src="{% static 'img/linkedinlogo.png' %}">
+                            <div class="company-info">
+                                <h3>Front End Developer</h3>
+                                <p>Linkedin</p>
+                            </div>                            
+                        </div>
+                        <div class="locality">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Sunnyvale, California</p>    
+                        </div>
+                        <div class="job-type">
+                            <span class="homeoffice">Home Office</span>
+                        </div>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="clickarea">
+                        <div class="company-box">
+                            <img src="{% static 'img/facebooklogo.png' %}">
+                            <div class="company-info">
+                                <h3>Full Stack Developer</h3>
+                                <p>Facebook</p>
+                            </div>                            
+                        </div>
+                        <div class="locality">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Menlo Park, California</p>    
+                        </div>
+                        <div class="job-type">
+                            <span class="pj">PJ</span>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+                 
+         </main>
+         <section id="sendjobs-container">
+             <div id= "sendjobs-inner" class="wrapper">
+                 <h2></h2> 
+                 <p>L</p>
+                 <a href="#" class="light-btn">Orçar</a>
+             </div>
+         </section>
+         <section id="status-container" class="wrapper">
+            <h2 class="title-center">Estatísticas do JobFinder</h2>
+            <p class="p-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At nobis temporibus error tenetur quia sunt architecto deleniti labore voluptates, fuga consectetur ullam voluptate. Blanditiis praesentium at commodi incidunt cupiditate quaerat.</p>
+            <div>
+                <div class="status-box">
+                    <span class="status-qtd">150</span>
+                    <p class="status-text">Vagas abertas</p>
+                </div>
+                <div class="status-box">
+                    <span class="status-qtd">250</span>
+                    <p class="status-text">Candidatos contratados</p>
+                </div>
+                <div class="status-box">
+                    <span class="status-qtd">50</span>
+                    <p class="status-text">Empresas participantes</p>
+                </div>
+                <div class="status-box">
+                    <span class="status-qtd">550</span>
+                    <p class="status-text">Canditados</p>
+                </div>
+            </div>
+         </section>
+        <section id="testmony-container">
+            <div class="wrapper">
+                <h2>Veja o que os clientes dizem</h2>
+                <p  class="p-center"></p>
+                <div class="testmony-box">
+                    <p class="testmony-msg">Com o novo website ORÇAMENTO, ficou muito mais prático, sabermos o que precisamos e comprar</p>
+                    <img src="{% static 'img/avatar1.png' %}" alt="">
+                    <p class="testmony-name"></p>
+                </div>
+                <div class="testmony-box">
+                    <p class="testmony-msg">Ganhamos agilidade na negociação</p>
+                    <img src="{% static 'img/avatar2.png' %}" alt="">
+                    <p class="testmony-name"></p>
+                </div>
+                <div class="testmony-box">
+                    <p class="testmony-msg">A nova ferramenta, atendeu nossas expectativas</p>
+                    <img src="{% static 'img/avatar3.png' %}" alt="">
+                    <p class="testmony-name"></p>
+                </div>
+                <div class="testmony-box">
+                    <p class="testmony-msg">Patricidade, agilidade, isso que buscamos no dia a dia.</p>
+                    <img src="{% static 'img/avatar4.png' %}" alt="">
+                    <p class="testmony-name">Lavinha</p>
+                </div>
+            </div>
+        </section>
+        <section id="blog-container" class="wrapper">
+            <h2 class="title-center">Últimos artigos do nosso blog</h2>
+            <p class="p-center">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo soluta dolorem ipsam unde magnam ut facilis deserunt sit ducimus quae eligendi placeat hic itaque, sint beatae, ab quibusdam quisquam aut.</p>
+            <div class="article-box">
+                <img src="{% static 'img/blog1.jpg' %}">
+                <h4><a href="#">Evolução do direito do trabalho</a></h4>
+                <p class="article-date">05 de Fevereiro de 2019 | 10 comentários</p>
+                <p class="article-resume">O trabalho é inerente ao homem, tanto que desde a Antiguidade o homem primitivo busca de forma incessante meios de satisfazer suas necessidades, como por exemplo, saciar sua fome, abrigar-se e defender-se, através de uma forma de trabalho.</p>
+                <a href="#" class="article-btn light-btn">Ler post</a>
+            </div>
+            <div class="article-box">
+                <img src="{% static 'img/blog2.jpg' %}">
+                <h4><a href="#">A era das redes sociais</a></h4>
+                <p class="article-date">10 de Abril de 2020 | 7 comentários</p>
+                <p class="article-resume">Entenda como a era das redes sociais modificou a conjuntura das relações interpessoais, bem como os benefícios e malefícios. O século XXI foi e está sendo marcado por diversos avanços tecnológicos que revolucionaram as formas de se conectar com o mundo.</p>
+                <a href="#" class="article-btn light-btn">Ler post</a>
+            </div>
+            <div class="article-box">
+                <img src="{% static 'img/blog3.jpg' %}">
+                <h4><a href="#">Perspectivas mercado trabalho</a></h4>
+                <p class="article-date">15 de Janeiro de 2021 | 3 comentários</p>
+                <p class="article-resume">Os últimos dados divulgados pelo IBGE, mostram que chegamos ao recorde da série do percentual de pessoas desocupadas , são 14,4% ou 13,6 milhões de pessoas em busca de uma oportunidade de trabalho.</p>
+                <a href="#" class="article-btn light-btn">Ler post</a>
+            </div>
+        </section>
+        <footer>
+            <div class="wrapper">
+                <div class="footer-box">
+                    <div class="company-footer">
+                        <img id="logo" src="{% static 'img/logo8.png' %}">
+                        <h2>E-System Job</h2>
+                        <p>A maneira mais fácil de você encontar seu próximo emprego</p>
+                    </div>
+                </div>
+                <div class="footer-box">
+                    <div class="Article-footer">
+                        <h2>Artigos recentes</h2>
+                        <ul class="footer-list footer-article-list">
+                            <li>
+                                <a href="#">Como conseguir o primeiro emprego em tempos de crise ?</a>
+                                <span class="article-date">28 de Fevereiro de 2019</span>
+                            </li>
+                            <li>
+                                <a href="#">Mercado de trabalho em 2021, profissões que estarão em alta.</a>
+                                <span class="article-date">05 de Dezembro de 2020</span>
+                            </li>
+                            <li>
+                                <a href="#">Governo ecomomiza R$ 1 bilhão com trabalho remoto de servidores.</a>
+                                <span class="article-date">25 de Setembro de 2020</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-box">
+                    <h2>Nos encontre nas redes sociais</h2>
+                    <ul class="footer-list">
+                        <li>
+                            <a href="https://www.facebook.com/elius.jesusdasmerces/" target = "_blank">
+                                <i class="fab fa-facebook-square"></i>
+                                <span>Facebook</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="fab fa-instagram"></i>
+                            <span>Instagram</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                            <i class="fab fa-linkedin"></i>
+                            <span>Linkedin</span>
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div clas="footer-bottom">
+                <div class="wrapper">
+                    <strong><p>E-System  .2021 &copy;</p></strong>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

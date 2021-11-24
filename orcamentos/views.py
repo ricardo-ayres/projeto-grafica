@@ -7,9 +7,12 @@ from decimal import Decimal
 from django.http import HttpResponse
 
 def index(request):
+    return render(request, 'orcamentos/index.html')
+
+def catalogo(request):
     produtos = Produto.objects.order_by('nome')
     context = {'produtos': produtos}
-    return render(request, 'orcamentos/index.html', context)
+    return render(request, 'orcamentos/catalogo.html', context)
 
 def orcamento(request):
     total = 0
