@@ -1,4 +1,7 @@
-<a href="/">VOLTAR</a>
+{% load static %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+</head>
 {% if produtos %}
 	<form action="{% url 'orcamentos:orcamento' %}" method="post">
 	{% csrf_token %}
@@ -18,3 +21,5 @@
 {% else %}
 	<p>Não há produtos cadastrados</p>
 {% endif %}
+
+<p><a href="/">PÁGINA INICIAL</a></p>

@@ -1,8 +1,12 @@
+{% load static %}
+<head>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
+</head>
 <ul>
 {% for item in pedido %}
 	<li>{{ item.produto }} (x {{ item.quantidade }}) = {{ item.subtotal }} </li>
 {% endfor %}
 </ul>
 <p>TOTAL: {{ total }}</p>
-<a href="/catalogo">VOLTAR</a>
-<a href="/">PÁGINA INICIAL</a>
+<p><a href="/catalogo">VOLTAR</a></p>
+<p><a href="/">PÁGINA INICIAL</a></p>
