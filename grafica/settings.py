@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['e00m.duckdns.org']
 # Application definition
 
 INSTALLED_APPS = [
+    'restapi.apps.RestapiConfig',
     'orcamentos.apps.OrcamentosConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -39,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
