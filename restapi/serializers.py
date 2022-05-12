@@ -2,10 +2,11 @@ from rest_framework import serializers
 
 from orcamentos.models import Produto
 
-class ProdutoSerializer(serializers.HyperlinkedModeSerializer):
+class ProdutoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Produto
-        fields = ('nome',
+        fields = ('id',
+                  'nome',
                   'descricao',
                   'preco',
                   'tipo_unidade',

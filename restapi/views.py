@@ -8,5 +8,5 @@ from .serializers import ProdutoSerializer
 from orcamentos.models import Produto
 
 class ProdutoViewSet(viewsets.ModelViewSet):
-    queryset = Produtc.obejects.all().order_by('nome')
+    queryset = Produto.objects.all().order_by('nome')
     serializer_class = ProdutoSerializer
