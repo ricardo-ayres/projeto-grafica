@@ -38,4 +38,6 @@ def orcamento(request):
 
     context = {'pedido': pedido, 'total': total}
     return render(request, 'orcamentos/orcamento.html', context)
-    
+
+def app(request):
+    return render(request, 'app/app.html')

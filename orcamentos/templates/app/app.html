@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Orçamentos</title>
+    </head>
+    <body>
+        <div id="root">
+            <table id="catalogo">
+                <tr>
+                    <th>Produto</th>
+                    <th>Descrição</th>
+                    <th>Preço por unidade</th>
+                    <th>Unidade</th>
+                    <th>Tipo de Unidade</th>
+                    <th>Quantidade</th>
+                </tr>
+            </table>
+        </div>
+    </body>
+    <script>
+        function addItem(produto, catalogo) {
+            var cnf = document.createElement.bind(document)
+            var newp = cnf("tr")
+            var nome = cnf("th")
+            var descricao = cnf("th")
+            var preco = cnf("th")
+            var valor_unidade = cnf("th")
+            var tipo_unidade = cnf("th")
+            var quant = cnf("th")
+            
+            nome.textContent = produto.nome
+            descricao.textContent = produto.descricao
+            preco.textContent = produto.preco
+            tipo_unidade.textContent = produto.tipo_unidade
+            valor_unidade.textContent = produto.valor_unidade
+
+            newp.appendChild(nome)
+            newp.appendChild(descricao)
+            newp.appendChild(preco)
+            newp.appendChild(valor_unidade)
+            newp.appendChild(tipo_unidade)
+            catalogo.appendChild(newp)
+        }
+
+        function buildList(produtos, catalogo) {
+            for (p of produtos) addItem(p, catalogo)
+        }
+
+        function getItems(url, catalogo) {
+            fetch(url)
+            .then(function(data) {return data.json()})
+            .then(function(produtos){buildList(produtos, catalogo)})
+        }
+
+        var catalogo = document.getElementById('catalogo')
+        var url = '/restapi/produto'
+        getItems(url, catalogo)
+    </script>
+</html>
