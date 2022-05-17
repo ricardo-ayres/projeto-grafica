@@ -6,14 +6,16 @@
     <body>
         <div id="root">
             <table id="catalogo">
-                <tr>
+                <thead><tr>
                     <th>Produto</th>
                     <th>Descrição</th>
                     <th>Preço por unidade</th>
                     <th>Unidade</th>
                     <th>Tipo de Unidade</th>
                     <th>Quantidade</th>
-                </tr>
+                </thead></tr>
+                <tbody id="catalogo-lista">
+                </tbody>
             </table>
         </div>
     </body>
@@ -27,6 +29,7 @@
             var valor_unidade = cnf("td")
             var tipo_unidade = cnf("td")
             var quant = cnf("td")
+            var input = cnf("input")
             
             nome.textContent = produto.nome
             descricao.textContent = produto.descricao
@@ -34,11 +37,19 @@
             tipo_unidade.textContent = produto.tipo_unidade
             valor_unidade.textContent = produto.valor_unidade
 
+            input.type = "number"
+            input.min = "0"
+            input.value = "0"
+            input.id = "pid-"+produto.id
+            quant.appendChild(input)
+
             newp.appendChild(nome)
             newp.appendChild(descricao)
             newp.appendChild(preco)
             newp.appendChild(valor_unidade)
             newp.appendChild(tipo_unidade)
+            newp.appendChild(quant)
+
             catalogo.appendChild(newp)
         }
 
@@ -52,7 +63,7 @@
             .then(function(produtos){buildList(produtos, catalogo)})
         }
 
-        var catalogo = document.getElementById('catalogo')
+        var catalogo = document.getElementById('catalogo-lista')
         var url = '/restapi/produto'
         getItems(url, catalogo)
     </script>
