@@ -21,12 +21,12 @@
         function addItem(produto, catalogo) {
             var cnf = document.createElement.bind(document)
             var newp = cnf("tr")
-            var nome = cnf("th")
-            var descricao = cnf("th")
-            var preco = cnf("th")
-            var valor_unidade = cnf("th")
-            var tipo_unidade = cnf("th")
-            var quant = cnf("th")
+            var nome = cnf("td")
+            var descricao = cnf("td")
+            var preco = cnf("td")
+            var valor_unidade = cnf("td")
+            var tipo_unidade = cnf("td")
+            var quant = cnf("td")
             
             nome.textContent = produto.nome
             descricao.textContent = produto.descricao
