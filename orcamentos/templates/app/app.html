@@ -73,6 +73,7 @@
         input.min = "0"
         input.value = "0"
         input.id = "pid-"+produto.id
+        input.className = "numero"
         input.onchange = function() {
             catalogo[produto.id].num = input.value
             updateResult(catalogo)
