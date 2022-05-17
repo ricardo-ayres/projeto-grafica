@@ -20,8 +20,12 @@
         </div>
     </body>
     <script>
-        function addItem(produto, catalogo) {
-            var cnf = document.createElement.bind(document)
+        // helper function
+        cnf = document.createElement.bind(document)
+    
+        function addItem(produto, catalogo, carrinho) {
+            carrinho[produto.id] = produto
+            
             var newp = cnf("tr")
             var nome = cnf("td")
             var descricao = cnf("td")
@@ -41,6 +45,10 @@
             input.min = "0"
             input.value = "0"
             input.id = "pid-"+produto.id
+            input.onchange = function() {
+                carrinho[produto.id].num = input.value
+            }
+
             quant.appendChild(input)
 
             newp.appendChild(nome)
@@ -54,17 +62,21 @@
         }
 
         function buildList(produtos, catalogo) {
-            for (p of produtos) addItem(p, catalogo)
+            for (p of produtos) addItem(p, catalogo, carrinho)
         }
 
-        function getItems(url, catalogo) {
+        function getItems(url, catalogo, carrinho) {
             fetch(url)
             .then(function(data) {return data.json()})
-            .then(function(produtos){buildList(produtos, catalogo)})
+            .then(function(produtos){buildList(produtos, catalogo, carrinho)})
         }
 
+        var carrinho = {}
         var catalogo = document.getElementById('catalogo-lista')
         var url = '/restapi/produto'
-        getItems(url, catalogo)
+        getItems(url, catalogo, carrinho)
+
+        var resultado = cnf("p")
+        document.getElementById("root").append(resultado)
     </script>
 </html>
