@@ -26,11 +26,9 @@ SECRET_KEY = 'django-insecure-57@8cv+*k_&zu&4voa1iy3%smz8)9p(%@v1%!(m-plp*-0@dp2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['e00m.duckdns.org']
-
+ALLOWED_HOSTS = []
 
 # Application definition
-
 INSTALLED_APPS = [
     'restapi.apps.RestapiConfig',
     'orcamentos.apps.OrcamentosConfig',

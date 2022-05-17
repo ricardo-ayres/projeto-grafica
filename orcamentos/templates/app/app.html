@@ -1,82 +1,102 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Orçamentos</title>
-    </head>
-    <body>
-        <div id="root">
-            <table id="catalogo">
-                <thead><tr>
-                    <th>Produto</th>
-                    <th>Descrição</th>
-                    <th>Preço por unidade</th>
-                    <th>Unidade</th>
-                    <th>Tipo de Unidade</th>
-                    <th>Quantidade</th>
-                </thead></tr>
-                <tbody id="catalogo-lista">
-                </tbody>
-            </table>
-        </div>
-    </body>
-    <script>
-        // helper function
-        cnf = document.createElement.bind(document)
-    
-        function addItem(produto, catalogo, carrinho) {
-            carrinho[produto.id] = produto
-            
-            var newp = cnf("tr")
-            var nome = cnf("td")
-            var descricao = cnf("td")
-            var preco = cnf("td")
-            var valor_unidade = cnf("td")
-            var tipo_unidade = cnf("td")
-            var quant = cnf("td")
-            var input = cnf("input")
-            
-            nome.textContent = produto.nome
-            descricao.textContent = produto.descricao
-            preco.textContent = produto.preco
-            tipo_unidade.textContent = produto.tipo_unidade
-            valor_unidade.textContent = produto.valor_unidade
+  <head>
+    <title>Orçamentos</title>
+  </head>
+  <body>
+    <div id="root">
+      <table>
+        <thead>
+          <tr>
+            <th>Produto</th>
+            <th>Descrição</th>
+            <th>Preço por unidade</th>
+            <th>Unidade</th>
+            <th>Tipo de Unidade</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+        <tbody id="lista">
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">TOTAL:</td>
+            <td id="resultado"</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </body>
+  <script>
+    // helper function
+    cnf = document.createElement.bind(document)
 
-            input.type = "number"
-            input.min = "0"
-            input.value = "0"
-            input.id = "pid-"+produto.id
-            input.onchange = function() {
-                carrinho[produto.id].num = input.value
-            }
+    // globals
+    lista = document.getElementById('lista')
+    resultado = document.getElementById('resultado')
+    resultado.style = "text-align: right"
 
-            quant.appendChild(input)
+    function updateResult(catalogo) {
+    	var total = 0
+    	for (p of Object.values(catalogo) {
+    	  if (p.num > 0) total += p.num*p.preco
+    	}
+    	resultado.textContent = "$ "+total
+    }
 
-            newp.appendChild(nome)
-            newp.appendChild(descricao)
-            newp.appendChild(preco)
-            newp.appendChild(valor_unidade)
-            newp.appendChild(tipo_unidade)
-            newp.appendChild(quant)
+    function addItem(produto, catalogo) {
+        catalogo[produto.id] = produto
+        
+        var newp = cnf("tr")
+        var nome = cnf("td")
+        var descricao = cnf("td")
+        var preco = cnf("td")
+        var valor_unidade = cnf("td")
+        var tipo_unidade = cnf("td")
+        var quant = cnf("td")
+        var input = cnf("input")
+        
+        nome.textContent = produto.nome
+        descricao.textContent = produto.descricao
+        preco.textContent = "$ "+produto.preco
+        preco.style = "text-align: right"
+        tipo_unidade.textContent = produto.tipo_unidade
+        valor_unidade.textContent = produto.valor_unidade
 
-            catalogo.appendChild(newp)
+        input.type = "number"
+        input.min = "0"
+        input.value = "0"
+        input.id = "pid-"+produto.id
+        input.onchange = function() {
+            catalogo[produto.id].num = input.value
+            updateResult(catalogo)
         }
 
-        function buildList(produtos, catalogo) {
-            for (p of produtos) addItem(p, catalogo, carrinho)
-        }
+        quant.appendChild(input)
 
-        function getItems(url, catalogo, carrinho) {
-            fetch(url)
-            .then(function(data) {return data.json()})
-            .then(function(produtos){buildList(produtos, catalogo, carrinho)})
-        }
+        newp.appendChild(nome)
+        newp.appendChild(descricao)
+        newp.appendChild(preco)
+        newp.appendChild(valor_unidade)
+        newp.appendChild(tipo_unidade)
+        newp.appendChild(quant)
 
-        var carrinho = {}
-        var catalogo = document.getElementById('catalogo-lista')
-        var url = '/restapi/produto'
-        getItems(url, catalogo, carrinho)
+        lista.appendChild(newp)
+    }
 
-        var resultado = cnf("p")
-        document.getElementById("root").append(resultado)
-    </script>
+    function buildList(produtos) {
+        for (p of produtos) addItem(p, catalogo)
+    }
+
+    function getItems(url, catalogo) {
+        fetch(url)
+        .then(function(data) {return data.json()})
+        .then(function(produtos){buildList(produtos, catalogo)})
+    }
+
+    var catalogo = {}
+    var url = '/restapi/produto'
+    getItems(url, catalogo)
+
+  </script>
 </html>
