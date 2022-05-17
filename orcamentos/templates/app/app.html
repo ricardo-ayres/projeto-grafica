@@ -2,6 +2,11 @@
 <html>
   <head>
     <title>Orçamentos</title>
+    <style>
+      .numero {
+        text-align: right;
+      }
+    </style>
   </head>
   <body>
     <div id="root">
@@ -34,7 +39,7 @@
     // globals
     lista = document.getElementById('lista')
     resultado = document.getElementById('resultado')
-    resultado.style = "text-align: right"
+    resultado.className = "numero"
 
     function updateResult(catalogo) {
     	var total = 0
@@ -59,9 +64,10 @@
         nome.textContent = produto.nome
         descricao.textContent = produto.descricao
         preco.textContent = "$ "+produto.preco
-        preco.style = "text-align: right"
+        preco.className = "numero"
         tipo_unidade.textContent = produto.tipo_unidade
         valor_unidade.textContent = produto.valor_unidade
+        valor_unidade.className = "numero"
 
         input.type = "number"
         input.min = "0"
