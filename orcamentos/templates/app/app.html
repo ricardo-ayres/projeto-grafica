@@ -43,7 +43,7 @@
 
     function updateResult(catalogo) {
     	var total = 0
-    	for (p of Object.values(catalogo)) {
+    	for (let p of Object.values(catalogo)) {
     	  if (p.num > 0) total += p.num*p.preco
     	}
     	resultado.textContent = "$ "+total
@@ -92,7 +92,7 @@
     }
 
     function buildList(produtos) {
-        for (p of produtos) addItem(p, catalogo)
+        for (let p of produtos) addItem(p, catalogo)
     }
 
     function getItems(url, catalogo) {
