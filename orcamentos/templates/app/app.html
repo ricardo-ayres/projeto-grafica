@@ -38,7 +38,7 @@
 
     function updateResult(catalogo) {
     	var total = 0
-    	for (p of Object.values(catalogo) {
+    	for (p of Object.values(catalogo)) {
     	  if (p.num > 0) total += p.num*p.preco
     	}
     	resultado.textContent = "$ "+total
