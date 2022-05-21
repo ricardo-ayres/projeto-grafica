@@ -78,8 +78,6 @@
     }
 
     function addItem(produto, catalogo) {
-        catalogo[produto.id] = produto
-        
         var newp = cnf("tr")
         var nome = cnf("td")
         var descricao = cnf("td")
@@ -103,7 +101,7 @@
         input.id = "pid-"+produto.id
         input.className = "numero"
         input.onchange = function() {
-            catalogo[produto.id].num = input.value
+            produto.num = input.value
             updateResult(catalogo)
         }
 
@@ -117,6 +115,9 @@
         newp.appendChild(quant)
 
         lista.appendChild(newp)
+
+        produto.input = input
+        catalogo[produto.id] = produto
     }
 
     function buildList(produtos) {
@@ -132,6 +133,7 @@
     function reset() {
         for (let p of Object.values(catalogo)) {
             p.num = 0
+            p.input.value = 0
         }
         updateResult(catalogo)
     }
