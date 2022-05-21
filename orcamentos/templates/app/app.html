@@ -2,9 +2,34 @@
 <html>
   <head>
     <title>Orçamentos</title>
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
     <style>
+      html {
+        font-family: sans-serif;
+        font-size: 10px;
+      }
+
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      tr, th, td {
+        padding: 8px;
+        border: 1px solid #dddddd;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+
       .numero {
         text-align: right;
+      }
+
+      #root {
+        margin: auto;
+        max-width: 70%;
       }
     </style>
   </head>
@@ -30,6 +55,9 @@
           </tr>
         </tfoot>
       </table>
+      <button id="reset_btn">Zerar</button>
+      <p><a href="/">Home</a></p>
+      <p><a href="/catalogo">Versão sem JavaScript</a></p>
     </div>
   </body>
   <script>
@@ -101,9 +129,20 @@
         .then(function(produtos){buildList(produtos, catalogo)})
     }
 
+    function reset() {
+        for (let p of Object.values(catalogo)) {
+            p.num = 0
+        }
+        updateResult(catalogo)
+    }
+
     var catalogo = {}
     var url = '/restapi/produto'
+    var rst_btn = document.getElementById("reset_btn")
+
     getItems(url, catalogo)
+    updateResult(catalogo)
+    rst_btn.addEventListener("click", reset)
 
   </script>
 </html>
